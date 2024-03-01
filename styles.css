@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333; /* Dark background color */
+    color: white; /* Light text color */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 100% of the viewport height */
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #444; /* Slightly lighter container background color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Box shadow for depth */
+}
+
+.report-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-input,
+.form-textarea,
+.form-select,
+.form-button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #555; /* Dark input background color */
+    border: 1px solid #777; /* Darker border color */
+    color: white; /* Light text color */
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border: 1px solid #007bff; /* Highlight color on focus */
+}
+
+.form-textarea {
+    resize: none;
+    height: 150px;
+}
+
+.form-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
