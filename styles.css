@@ -30,15 +30,15 @@ body {
     width: 100%;
     padding: 8px;
     border-radius: 4px;
-    background-color: #555; /* Dark input background color */
-    border: 1px solid #777; /* Darker border color */
-    color: white; /* Light text color */
+    background-color: #555; 
+    border: 1px solid #777; 
+    color: white; 
 }
 
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-    border: 1px solid #007bff; /* Highlight color on focus */
+    border: 1px solid #007bff;
 }
 
 .form-textarea {
