@@ -1,17 +1,31 @@
+<form (ngSubmit)="submit()" [formGroup]="loginForm">
 
-<p-inputGroup>
-    <p-inputGroupAddon>
-        <i class="pi pi-user"></i>
-    </p-inputGroupAddon>
-    <input pInputText placeholder="Email or Username" />
-</p-inputGroup>
+    <br/>
+    <br/>
+    <br/>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <p-floatLabel>
+        <input pInputText id="username" />
+        <label for="username">Username</label>
+</p-floatLabel>
+    </p-inputGroup>
+    <br/>
+    <p-inputGroup>
+        <p-inputGroupAddon >
+            <i class="pi pi-key"></i> 
+        </p-inputGroupAddon>
+        <p-floatLabel>
+        <p-password formArrayName="password" [feedback]="false" [style]="{'width': '50%'}" [maxLength]="50" id="password"></p-password>
+        <label for="password">Password</label>
+        </p-floatLabel>
+    </p-inputGroup>
 
-<p-inputGroup>
-    <p-inputGroupAddon>
-        <i class="pi pi-key"></i>
-    </p-inputGroupAddon>
-    <p-password [toggleMask]="true"></p-password>
-</p-inputGroup>
-<p-button label="Forgot password!" [text]="true" severity="help"></p-button>
-<br/>
-<p-button icon="pi pi-sign-in"></p-button>
+    <br/>
+    <p-button label="Forgot password!" [text]="true" severity="help"></p-button>
+    <br/>
+    <br/>
+    <p-button type="submit" icon="pi pi-sign-in"></p-button>
+</form>

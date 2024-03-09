@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilledButton } from './filled-button.component';
+import { ForgotPasswordDialog } from './forgot-password-dialog.component';
 
-describe('FilledButtonComponent', () => {
-  let component: FilledButton;
-  let fixture: ComponentFixture<FilledButton>;
+describe('ForgotPasswordDialogComponent', () => {
+  let component: ForgotPasswordDialog;
+  let fixture: ComponentFixture<ForgotPasswordDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilledButton]
+      imports: [ForgotPasswordDialog]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FilledButton);
+    fixture = TestBed.createComponent(ForgotPasswordDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
