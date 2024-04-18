@@ -1,0 +1,8 @@
+<p-selectButton [options]="choices" [(ngModel)]="choice" optionLabel="label" optionValue="value" (onChange)="changeForm($event.value)" ></p-selectButton>
+
+@if(choice===0){
+<signup-form/>
+}
+@else if (choice===1) {
+    <login-form/>
+}

@@ -1,0 +1,23 @@
+<form (ngSubmit)="submit()" [formGroup]="loginForm">
+
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <p-floatLabel>
+        <input pInputText id="username" />
+        <label for="username">Username</label>
+</p-floatLabel>
+    </p-inputGroup>
+    <p-inputGroup>
+        <p-inputGroupAddon >
+            <i class="pi pi-key"></i> 
+        </p-inputGroupAddon>
+        <p-floatLabel>
+        <p-password formControlName="password" [feedback]="false" [style]="{'width': 'fit-content'}" [maxLength]="50" id="password"></p-password>
+        <label for="password">Password</label>
+        </p-floatLabel>
+    </p-inputGroup>
+    <p-button label="Forgot password!" [text]="true" severity="help"></p-button>
+    <p-button type="submit" icon="pi pi-sign-in"></p-button>
+</form>

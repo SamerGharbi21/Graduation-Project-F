@@ -1,0 +1,82 @@
+<form [formGroup]="signupForm" (ngSubmit)="submit()">
+    @if (currentStep==1) {
+    <div>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-user"></i>
+            </p-inputGroupAddon>
+            <p-floatLabel>
+            <input pInputText id="username" formControlName="username" />
+            <label for="username">Username</label>
+    </p-floatLabel>
+        </p-inputGroup>
+        <p-button label="Next" icon="pi pi-arrow-right" [iconPos]="'right'" (click)="goToStep(2)"
+            [disabled]="signupForm.controls['username'].invalid"></p-button>
+    </div>}
+    @else if (currentStep==2) {
+    <div>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-user"></i>
+            </p-inputGroupAddon>
+            <p-floatLabel>
+            <input pInputText id="email" formControlName="email" />
+            <label for="email">Email</label>
+    </p-floatLabel>
+    <p-inputGroupAddon>
+            <p-dropdown [options]="hosts" #dropdown [(ngModel)]="chosenHost" [style]="{'width': 'fit-content'}" [filter]="true" [placeholder]="chosenHost" [ngModelOptions]="{standalone: true}" ></p-dropdown>
+    </p-inputGroupAddon>
+        </p-inputGroup>
+        <p-button label="Previous" icon="pi pi-arrow-left" [iconPos]="'right'" (click)="goToStep(1)"></p-button>
+        <p-button label="Next" icon="pi pi-arrow-right" [iconPos]="'right'" (click)="goToStep(3)"
+            [disabled]="signupForm.controls['email'].invalid"></p-button>
+    </div>
+    }
+    @else {
+    <div>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <span class="material-symbols-outlined">
+                    id_card
+                </span> </p-inputGroupAddon>
+                <p-floatLabel>
+                <input pInputText placeholder="First name" formControlName="firstName" id="firstName" />
+                <label for="firstName">First name</label>
+</p-floatLabel>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <span class="material-symbols-outlined">
+                    id_card
+                </span> </p-inputGroupAddon>
+                <p-floatLabel>
+                <input pInputText placeholder="Last name" formControlName="lastName" id="lastName" />
+                <label for="lastName">Last name</label>
+</p-floatLabel>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-key"></i>
+            </p-inputGroupAddon>
+            <p-floatLabel>
+                <p-password placeholder="Password" formControlName="password" id="password"></p-password>
+                <label for="password">Password</label>
+            </p-floatLabel>
+        </p-inputGroup>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-key"></i>
+            </p-inputGroupAddon>
+            <p-floatLabel>
+                <p-password placeholder="Password" formControlName="password" id="re-enter password" [toggleMask]="true"></p-password>
+                <label for="re-enter password">Re-enter password</label>
+            </p-floatLabel>        </p-inputGroup>
+        <div class="explanation-text">
+            Enable 2FA method :
+        </div>
+        <p-selectButton [options]="['Email','QR Code']" [allowEmpty]="true" [disabled]="false"></p-selectButton>
+        <p-button label="Previous" icon="pi pi-arrow-left" [iconPos]="'right'" (click)="goToStep(2)"></p-button>
+        <p-button label="Submit" type="submit"></p-button>
+    </div>
+    }
+</form>

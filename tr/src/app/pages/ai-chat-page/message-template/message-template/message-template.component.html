@@ -1,0 +1,22 @@
+<p-panel [toggleable]="true">
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+            <p-avatar [image]="pfp" size="large" shape="circle" />
+            <span class="font-bold">{{name}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+            <span class="p-text-secondary">{{whenCreated}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="icons">
+        <button class="p-panel-header-icon p-link mr-2" (click)="menu.toggle($event)">
+            <span class="pi pi-cog"></span>
+        </button>
+        <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
+    </ng-template>
+    <p class="m-0">
+        {{message}}
+    </p>
+</p-panel>
