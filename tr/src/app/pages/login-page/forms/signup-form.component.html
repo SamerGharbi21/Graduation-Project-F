@@ -69,7 +69,7 @@
                 <p-password placeholder="Password" formControlName="passwordConfirmation" id="re-enter password" [toggleMask]="true" [style]="{'width': 'fit-content'}" ></p-password>
                 <label for="re-enter password">Re-enter password</label>
             </p-floatLabel>        </p-inputGroup>
-            <p-fileUpload  accept="image/*" [maxFileSize]="1000000" formControlName="pfp">
+            <p-fileUpload  accept="image/*" [maxFileSize]="1000000" >
                 <ng-template pTemplate="content">
                     <!-- <ul *ngIf="uploadedFiles.length">
                         <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>

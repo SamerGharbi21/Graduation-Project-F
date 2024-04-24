@@ -5,16 +5,15 @@ import { User } from '../../models/user.model';
 import { NamePipe } from '../../pipes/name.pipe';
 import { Observable } from 'rxjs';
 import { ToolbarModule } from 'primeng/toolbar';
-import { StyleClassModule } from 'primeng/styleclass';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 
 
 @Component({
   standalone: true,
-  imports: [ AvatarModule, NamePipe, ToolbarModule, StyleClassModule, ButtonModule, RippleModule ],
+  imports: [ AvatarModule, NamePipe, ToolbarModule, ButtonModule, RippleModule ],
   selector: 'toolbar',
-  templateUrl: './toolbar.component.html'
+  templateUrl: './toolbar.component.html',
 })
 export class TopToolbar {
   user: Observable<User | null>;

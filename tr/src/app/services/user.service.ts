@@ -20,9 +20,9 @@ export class UserService {
         } else {
           return this.http.get<User | null>(`${this.userURL}get`).pipe(
             tap(fetchedUser => {
-              if (fetchedUser && !fetchedUser.pfp) {
-                fetchedUser.pfp = "./assets/defaultUserPfp.jpeg";
-              }
+              // if (fetchedUser && !fetchedUser.pfp) {
+              //   fetchedUser.pfp = "./assets/defaultUserPfp.jpeg";
+              // }
               this.user.next(fetchedUser);
             }),
             catchError(error => {

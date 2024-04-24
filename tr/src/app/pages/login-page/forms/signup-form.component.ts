@@ -38,7 +38,7 @@ constructor(private authenticationService: AuthService, private toastService: To
     lastName : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required),
     passwordConfirmation : new FormControl('',[Validators.required]),
-    pfp: new FormControl(File)
+    // pfp: new FormControl(File)
   }, {validators: passwordMatchValidator});
 
   
@@ -54,7 +54,7 @@ constructor(private authenticationService: AuthService, private toastService: To
         lastName: this.signupForm.get('lastName')!.value as string,
         password: this.signupForm.get('password')!.value as string,
         passwordConfirmation: this.signupForm.get('passwordConfirmation')!.value as string,
-        pfp: this.signupForm.get('pfp')!.value as unknown as File
+        // pfp: this.signupForm.get('pfp')!.value as unknown as File
       };
       
       this.authenticationService.signup(formValue).subscribe({
@@ -89,6 +89,7 @@ this.authenticationService.isUsernameReserved(this.signupForm.get('username')?.v
 });
 }
 checkEmail(): void {
+  console.log(this.signupForm.get('username')?.value);
   this.authenticationService.isEmailReserved(this.signupForm.get('email')?.value).subscribe({
     next: value => {
       if(value)
