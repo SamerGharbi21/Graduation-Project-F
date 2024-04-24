@@ -7,5 +7,5 @@ query!: string;
 response!: string;
 whenMade!: Date;
 correct!: boolean;    
-incorrectWords?: string[];
+incorrectWords?: string;
 }

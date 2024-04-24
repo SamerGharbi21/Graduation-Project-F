@@ -3,12 +3,13 @@ import { LoginForm } from './forms/login-form.component';
 import { SignupForm } from './forms/signup-form.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
+import { ImageModule } from 'primeng/image';
 
 
 @Component({
   selector: 'login-page',
   standalone: true,
-  imports: [LoginForm,SignupForm, SelectButtonModule, FormsModule],
+  imports: [LoginForm,SignupForm, SelectButtonModule, FormsModule, ImageModule],
   templateUrl: './login-page.component.html',
   // styles: ''
 })

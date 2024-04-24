@@ -8,39 +8,97 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
+import { AuthService } from '../../../services/authentication.service';
+import { ToastService } from '../../../components/toast-service.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { passwordMatchValidator } from '../../../validators/password-confirmation.validator';
 
 @Component({
   selector: 'signup-form',
   standalone: true,
-  imports: [InputGroupAddonModule,InputGroupModule,PasswordModule,ButtonModule,DropdownModule,ReactiveFormsModule,SelectButtonModule, FormsModule, FloatLabelModule, InputTextModule],
+  imports: [InputGroupAddonModule,InputGroupModule,PasswordModule,ButtonModule,DropdownModule,ReactiveFormsModule,SelectButtonModule, FormsModule, FloatLabelModule, InputTextModule, FileUploadModule, CommonModule],
   templateUrl: './signup-form.component.html',
 
 })
 export class SignupForm {
+
+constructor(private authenticationService: AuthService, private toastService: ToastService, private router: Router){}
+
   currentStep : number = 1;
   @ViewChild('dropdown') dropdown!: Dropdown;
   hosts:string[] = [ 'hotmail.com', 'gmail.com' ];
+
   chosenHost: string = this.hosts[0];
-    signupForm = new FormGroup({
+    signupForm: FormGroup = new FormGroup({
     username : new FormControl('',[Validators.minLength(4),Validators.required]),
     email : new FormControl('',[Validators.required,Validators.maxLength(40),Validators.minLength(4)]),
     firstName : new FormControl('',Validators.required),
     lastName : new FormControl('',Validators.required),
     password : new FormControl('',Validators.required),
-    passwordConfirmation : new FormControl('',[Validators.required])
-  });
-  private static passwordMatchValidator(formGroup: FormGroup): { [key: string]: any } | null {
-    const password = formGroup.get('password')!.value;
-    const passwordConfirmation = formGroup.get('passwordConfirmation')!.value;
-    return password === passwordConfirmation ? null : { passwordMismatch: true };
-  }
+    passwordConfirmation : new FormControl('',[Validators.required]),
+    pfp: new FormControl(File)
+  }, {validators: passwordMatchValidator});
+
+  
   goToStep(step: number): void {
     this.currentStep = step;
   }
-  submit(): void {
-//appending host to email
-this.signupForm.controls['email'].setValue(`${this.signupForm.controls['email'].value}@${this.chosenHost}`);
-
+  submit(): void {    
+    if (this.signupForm.valid) {
+      const formValue = {
+        username: this.signupForm.get('username')!.value as string,
+        email: (this.signupForm.get('email')!.value as string) + '@' + this.chosenHost,
+        firstName: this.signupForm.get('firstName')!.value as string,
+        lastName: this.signupForm.get('lastName')!.value as string,
+        password: this.signupForm.get('password')!.value as string,
+        passwordConfirmation: this.signupForm.get('passwordConfirmation')!.value as string,
+        pfp: this.signupForm.get('pfp')!.value as unknown as File
+      };
+      
+      this.authenticationService.signup(formValue).subscribe({
+        next: (response) => {
+          this.toastService.showSuccess({summary: 'Welcome', detail: 'You have created an account'});
+          this.saveTokens(response.accessToken,response.refreshToken);
+          this.router.navigateByUrl('/ai');
+        },
+        error: _ => {
+          this.toastService.showError({summary: 'Error', detail: 'An error occured. try again'});
+        }
+      });
+    }
+  }
+  private saveTokens(accessToken: string, refreshToken: string): void {
+    localStorage.setItem('access-token', accessToken); 
+    localStorage.setItem('refresh-token', refreshToken); 
+  }
+checkUsername(): void {
+this.authenticationService.isUsernameReserved(this.signupForm.get('username')?.value).subscribe({
+  next: value => {
+    console.log(value);
+    
+    if(value)
+      this.toastService.showError({summary: 'Error', detail: 'Username is reserved'})
+    else
+    this.goToStep(2);
+  },
+  error: _ => {
+    this.toastService.showError({summary: 'Error', detail: 'Try again'})
+  },
+});
 }
-
+checkEmail(): void {
+  this.authenticationService.isEmailReserved(this.signupForm.get('email')?.value).subscribe({
+    next: value => {
+      if(value)
+        this.toastService.showError({summary: 'Error', detail: 'Email is Reserved'})
+        else
+      this.goToStep(3);
+    },
+    error: _  =>{
+      this.toastService.showError({summary: 'Error', detail: 'Try again'})
+    },
+  });
+}
 }

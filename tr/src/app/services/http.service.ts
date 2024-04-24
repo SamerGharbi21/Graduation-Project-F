@@ -4,4 +4,8 @@ import { NgModule } from "@angular/core";
 @NgModule({
 imports: []
 })
-export class ServiseModule{}
+export class ServiseModule{
+
+
+
+}

@@ -1,6 +1,6 @@
 
 
-enum FeedbackType{
+export enum FeedbackType{
 Technical,
 Financial,
 Suggestion  

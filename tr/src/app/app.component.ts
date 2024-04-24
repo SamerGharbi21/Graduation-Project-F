@@ -1,16 +1,11 @@
-import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Dropdown } from 'primeng/dropdown';
+import { Component } from '@angular/core';
 
-interface Hosts {
-  name: string;
-}
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  // styleUrls: ['./app.component.scss'],
+  // styleUrls: ['./app.component.css'],
 })
 export class AppComponent  {
 

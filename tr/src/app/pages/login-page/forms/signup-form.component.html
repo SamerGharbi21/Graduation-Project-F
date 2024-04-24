@@ -10,7 +10,7 @@
             <label for="username">Username</label>
     </p-floatLabel>
         </p-inputGroup>
-        <p-button label="Next" icon="pi pi-arrow-right" [iconPos]="'right'" (click)="goToStep(2)"
+        <p-button label="Next" icon="pi pi-arrow-right" [iconPos]="'right'" (click)="checkUsername()"
             [disabled]="signupForm.controls['username'].invalid"></p-button>
     </div>}
     @else if (currentStep==2) {
@@ -23,12 +23,10 @@
             <input pInputText id="email" formControlName="email" />
             <label for="email">Email</label>
     </p-floatLabel>
-    <p-inputGroupAddon>
             <p-dropdown [options]="hosts" #dropdown [(ngModel)]="chosenHost" [style]="{'width': 'fit-content'}" [filter]="true" [placeholder]="chosenHost" [ngModelOptions]="{standalone: true}" ></p-dropdown>
-    </p-inputGroupAddon>
         </p-inputGroup>
         <p-button label="Previous" icon="pi pi-arrow-left" [iconPos]="'right'" (click)="goToStep(1)"></p-button>
-        <p-button label="Next" icon="pi pi-arrow-right" [iconPos]="'right'" (click)="goToStep(3)"
+        <p-button label="Next" icon="pi pi-arrow-right" [iconPos]="'right'" (click)="checkEmail()"
             [disabled]="signupForm.controls['email'].invalid"></p-button>
     </div>
     }
@@ -59,7 +57,7 @@
                 <i class="pi pi-key"></i>
             </p-inputGroupAddon>
             <p-floatLabel>
-                <p-password placeholder="Password" formControlName="password" id="password"></p-password>
+                <p-password placeholder="Password" formControlName="password" id="password" [style]="{'width': 'fit-content'}"></p-password>
                 <label for="password">Password</label>
             </p-floatLabel>
         </p-inputGroup>
@@ -68,15 +66,22 @@
                 <i class="pi pi-key"></i>
             </p-inputGroupAddon>
             <p-floatLabel>
-                <p-password placeholder="Password" formControlName="password" id="re-enter password" [toggleMask]="true"></p-password>
+                <p-password placeholder="Password" formControlName="passwordConfirmation" id="re-enter password" [toggleMask]="true" [style]="{'width': 'fit-content'}" ></p-password>
                 <label for="re-enter password">Re-enter password</label>
             </p-floatLabel>        </p-inputGroup>
+            <p-fileUpload  accept="image/*" [maxFileSize]="1000000" formControlName="pfp">
+                <ng-template pTemplate="content">
+                    <!-- <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul> -->
+                </ng-template>
+            </p-fileUpload>
         <div class="explanation-text">
             Enable 2FA method :
         </div>
         <p-selectButton [options]="['Email','QR Code']" [allowEmpty]="true" [disabled]="false"></p-selectButton>
         <p-button label="Previous" icon="pi pi-arrow-left" [iconPos]="'right'" (click)="goToStep(2)"></p-button>
-        <p-button label="Submit" type="submit"></p-button>
+        <p-button label="Submit" type="submit" [disabled]="!signupForm.valid"></p-button>
     </div>
     }
 </form>

@@ -1,3 +1,8 @@
+
+<p-image src="./assets/QLM.webp" [preview]="true" alt="Image" width="250" alt="App Icon">
+    <ng-template pTemplate="indicator">
+    </ng-template>
+</p-image>
 <p-selectButton [options]="choices" [(ngModel)]="choice" optionLabel="label" optionValue="value" (onChange)="changeForm($event.value)" ></p-selectButton>
 
 @if(choice===0){

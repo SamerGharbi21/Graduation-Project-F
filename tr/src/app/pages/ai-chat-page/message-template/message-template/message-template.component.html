@@ -1,13 +1,13 @@
 <p-panel [toggleable]="true">
     <ng-template pTemplate="header">
         <div class="flex align-items-center gap-2">
-            <p-avatar [image]="pfp" size="large" shape="circle" />
-            <span class="font-bold">{{name}}</span>
+            <p-avatar [image]="user?.pfp" size="large" shape="circle" />
+            <span class="font-bold">{{user?.firstName! | fullName: user?.lastName!}}</span>
         </div>
     </ng-template>
     <ng-template pTemplate="footer">
         <div class="flex flex-wrap align-items-center justify-content-between gap-3">
-            <span class="p-text-secondary">{{whenCreated}}</span>
+            <span class="p-text-secondary">{{inference?.whenMade | date: 'medium'}}</span>
         </div>
     </ng-template>
     <ng-template pTemplate="icons">
@@ -17,6 +17,6 @@
         <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
     </ng-template>
     <p class="m-0">
-        {{message}}
+        {{inference?.query}}
     </p>
 </p-panel>
