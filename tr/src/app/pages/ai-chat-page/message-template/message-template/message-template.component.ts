@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
@@ -6,51 +6,53 @@ import { PanelModule } from 'primeng/panel';
 import { UserService } from '../../../../services/user.service';
 import { User } from '../../../../models/user.model';
 import { InferenceService } from '../../../../services/inference.service';
-import { Inference } from '../../../../models/inference.model';
 import { NamePipe } from '../../../../pipes/name.pipe';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
+import { MenuItem } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { ToastService } from '../../../../services/toast-service.component';
 
 @Component({
   selector: 'message-template',
   templateUrl: './message-template.component.html',
   standalone: true,
-  imports: [PanelModule, AvatarModule, ButtonModule, MenuModule, NamePipe, DatePipe]
+  imports: [PanelModule, AvatarModule, ButtonModule, MenuModule, NamePipe, DatePipe, CommonModule]
 })
-export class MessageTemplate implements OnInit
-{
-  inference: Inference | null = null;
-  user: User | null = null;
+export class MessageTemplate implements OnInit, OnDestroy {
+  user!: Observable<User | null>;
+  @Input() message!: string;
+  @Input() whenCreated!: Date;
+  @Input() id!: number;
+  @Output() deleteClicked: EventEmitter<void> = new EventEmitter<void>();
+  // pfp: string = this.userService.getFetchedUser(); //image
 // private subscription: Subscription = new Subscription();
-items: { label?: string; icon?: string; separator?: boolean }[] = [];
-constructor(private inferenceService: InferenceService, private userService: UserService){}
+items: MenuItem[] = [];
+constructor(private inferenceService: InferenceService, private userService: UserService, private toastService: ToastService){}
+  ngOnDestroy(): void {
+
+  }
   // ngOnDestroy(): void {
   //   this.subscription.unsubscribe();
   // }
   ngOnInit(): void {
+    this.user = this.userService.getUser();
   //   this.subscription.add(
   //     this.userService.getUser().subscribe({
   //       next: (user) => this.user = user,
   //       error: (error) => console.error('There was an error!', error)
   //     })
   //   ); 
-  this.inferenceService.getInferences().subscribe({
-    next: value => {
-      console.log(value);
+  // this.inferenceService.getInferences().subscribe({
+  //   next: value => {
+  //     console.log(value);
       
-      this.inference = value[0];
-    },
-    error: err => {
-      console.log(err);
+  //     // this.inference = value[0];
+  //   },
+  //   error: err => {
+  //     console.log(err);
       
-    },
-  });
-
-this.userService.getUser().subscribe({
-  next: (value) => {
-    this.user=value;
-  },
-})
-
+  //   },
+  // });
     this.items = [
       {
        label: 'Mark as correct',
@@ -61,15 +63,23 @@ this.userService.getUser().subscribe({
        },
        {
            label: 'Delete',
-           icon: 'pi pi-trash'
+           icon: 'pi pi-trash',
+           command: _ => {
+             this.inferenceService.deleteInference(this.id).subscribe({
+              next: _ => {
+                this.inferenceService.removeFromInference(this.id);
+                this.deleteClicked.emit();
+              },
+error: (err) => {
+  this.toastService.showError({summary: 'Error', detail: err});
+},
+             })
+           },
+
        }
    ];
    }
 
 
 
-// pfp: string = this.userService.getFetchedUser(); //image
-@Input() message!: string;
-// name: string = this.userService.getFetchedUser().firstName;
-@Input() whenCreated!: string;
 }

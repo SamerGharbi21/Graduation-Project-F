@@ -1,10 +1,16 @@
-@if(infrence){
-<message-template [message]="infrence.query"  [whenCreated]="date"></message-template>
-}
-<p-inputGroup>
+<history-sidebar (historyChat)="setInference($event)" ></history-sidebar>
+<form #aiForm="ngForm" (ngSubmit)="submit()">
+    <p-inputGroup>
         <p-floatLabel>
-            <input id="text" type="text" pInputText [(ngModel)]="value" />
+            <input id="text"  type="text" pInputText [(ngModel)]="text" required name="text" pTooltip="e.g. هاذي جامعت طيبه" />
             <label for="text">Text</label>
         </p-floatLabel>
-        <p-button icon="pi pi-send" type="submit" (onClick)="submit()"></p-button>
+        <p-button icon="pi pi-send" type="submit" [disabled]="aiForm.invalid"></p-button>
     </p-inputGroup>
+</form>
+@if(infrence){
+<message-template [message]="infrence.query"  [whenCreated]="infrence.whenMade" [id]="infrence.id" (deleteClicked)="setInference(null)"></message-template>
+@if(infrence.response){
+<ai-message-template [response]="infrence.response"></ai-message-template>
+}
+}

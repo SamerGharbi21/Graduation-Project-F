@@ -1,3 +1,4 @@
+<p-steps [model]="steps" [readonly]="true" [activeIndex]="currentStep-1"></p-steps>
 <form [formGroup]="signupForm" (ngSubmit)="submit()">
     @if (currentStep==1) {
     <div>
@@ -81,7 +82,7 @@
         </div>
         <p-selectButton [options]="['Email','QR Code']" [allowEmpty]="true" [disabled]="false"></p-selectButton>
         <p-button label="Previous" icon="pi pi-arrow-left" [iconPos]="'right'" (click)="goToStep(2)"></p-button>
-        <p-button label="Submit" type="submit" [disabled]="!signupForm.valid"></p-button>
+        <p-button label="Submit" type="submit" [disabled]="signupForm.invalid"></p-button>
     </div>
     }
 </form>

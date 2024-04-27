@@ -1,13 +1,14 @@
+<div *ngIf="user | async as user else null ">
 <p-panel [toggleable]="true">
     <ng-template pTemplate="header">
         <div class="flex align-items-center gap-2">
             <p-avatar [image]="''" size="large" shape="circle" />
-            <span class="font-bold">{{user?.firstName! | fullName: user?.lastName!}}</span>
+            <span class="font-bold">{{user?.firstName | fullName: user?.lastName}}</span>
         </div>
     </ng-template>
     <ng-template pTemplate="footer">
         <div class="flex flex-wrap align-items-center justify-content-between gap-3">
-            <span class="p-text-secondary">{{inference?.whenMade | date: 'medium'}}</span>
+            <span class="p-text-secondary">{{whenCreated | date: 'medium'}}</span>
         </div>
     </ng-template>
     <ng-template pTemplate="icons">
@@ -17,6 +18,7 @@
         <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
     </ng-template>
     <p class="m-0">
-        {{inference?.query}}
+        {{message}}
     </p>
 </p-panel>
+</div>

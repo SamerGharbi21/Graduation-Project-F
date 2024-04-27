@@ -7,7 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '../../../services/authentication.service';
-import { ToastService } from '../../../components/toast-service.component';
+import { ToastService } from '../../../services/toast-service.component';
 import { Router } from '@angular/router';
 import { ForgotPasswordDialog } from '../../../components/forgot-password-dialog/forgot-password-dialog.component';
 

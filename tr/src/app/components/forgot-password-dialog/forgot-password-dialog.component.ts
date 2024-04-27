@@ -7,7 +7,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthService } from '../../services/authentication.service';
-import { ToastService } from '../toast-service.component';
+import { ToastService } from '../../services/toast-service.component';
 @Component({
   selector: 'forgot-password-dialog',
   standalone: true,

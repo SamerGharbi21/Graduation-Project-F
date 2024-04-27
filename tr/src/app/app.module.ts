@@ -104,7 +104,7 @@ import { RippleModule } from 'primeng/ripple';
 import { StyleClassModule } from 'primeng/styleclass';
 import { MessageService } from 'primeng/api';
 
-import { ToastService } from './components/toast-service.component';
+import { ToastService } from './services/toast-service.component';
 import { AuthenticationInterceptor } from './interceptors/authentication-interceptor.service';
 
 @NgModule({
