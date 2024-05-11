@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
 import { DividerModule } from 'primeng/divider';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../../../services/toast-service.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @Component({
   selector: 'history-sidebar',
   standalone: true,
-  imports: [SidebarModule, ButtonModule, DividerModule, CommonModule],
+  imports: [SidebarModule, ButtonModule, DividerModule, CommonModule, ScrollPanelModule],
   templateUrl: './history-sidebar.component.html'
 })
 export class HistorySidebar {

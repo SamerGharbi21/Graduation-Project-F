@@ -1,16 +1,46 @@
-<history-sidebar (historyChat)="setInference($event)" ></history-sidebar>
-<form #aiForm="ngForm" (ngSubmit)="submit()">
-    <p-inputGroup>
-        <p-floatLabel>
-            <input id="text"  type="text" pInputText [(ngModel)]="text" required name="text" pTooltip="e.g. هاذي جامعت طيبه" />
-            <label for="text">Text</label>
-        </p-floatLabel>
-        <p-button icon="pi pi-send" type="submit" [disabled]="aiForm.invalid"></p-button>
-    </p-inputGroup>
-</form>
-@if(infrence){
-<message-template [message]="infrence.query"  [whenCreated]="infrence.whenMade" [id]="infrence.id" (deleteClicked)="setInference(null)"></message-template>
-@if(infrence.response){
-<ai-message-template [response]="infrence.response"></ai-message-template>
-}
-}
+
+<div style="height: 90vh; display: flex; flex-direction: column; justify-content: space-between;">
+
+<div>
+    <history-sidebar (historyChat)="setInference($event)"/>
+</div>
+
+<!-- body -->
+<div style=" display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+        @if(infrence){
+            <div style="width: 80%; margin-bottom: 12px;">
+                <message-template [message]="infrence.query" [whenCreated]="infrence.whenMade" [id]="infrence.id"
+                    (deleteClicked)="setInference(null)"></message-template>
+            </div>
+   
+
+        @if(infrence.response){
+            <div style="width: 80%;">
+                <ai-message-template [response]="infrence.response"></ai-message-template>
+            </div>
+
+        }
+        }
+
+    </div>
+
+    <div [ngStyle]="{'display':'flex','justify-content':'center', 'align-items':'flex-end','padding':'10px'}">
+        <div [ngStyle]="{'padding':'12px', 'position':'fixed', 'bottom':'0',}">
+            <form #aiForm="ngForm" (ngSubmit)="submit()">
+                <p-inputGroup>
+                    <p-floatLabel>
+                        <input id="text" type="text" pInputText [(ngModel)]="text" required name="text"
+                            pTooltip="e.g. هاذي جامعت طيبه" />
+                        <label for="text">Text</label>
+                    </p-floatLabel>
+
+                    <p-button icon="pi pi-send" type="submit" [disabled]="aiForm.invalid"></p-button>
+
+                </p-inputGroup>
+            </form>
+        </div>
+
+
+    </div>
+</div>

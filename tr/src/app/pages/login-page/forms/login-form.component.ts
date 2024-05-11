@@ -10,12 +10,13 @@ import { AuthService } from '../../../services/authentication.service';
 import { ToastService } from '../../../services/toast-service.component';
 import { Router } from '@angular/router';
 import { ForgotPasswordDialog } from '../../../components/forgot-password-dialog/forgot-password-dialog.component';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'login-form',
   standalone: true,
-  imports: [InputGroupAddonModule,InputGroupModule,PasswordModule,ButtonModule,ReactiveFormsModule,FloatLabelModule,InputTextModule, ForgotPasswordDialog],
+  imports: [InputGroupAddonModule,InputGroupModule,PasswordModule,ButtonModule,ReactiveFormsModule,FloatLabelModule,InputTextModule, ForgotPasswordDialog,CommonModule],
   templateUrl: './login-form.component.html',
   // styles: ''
 })

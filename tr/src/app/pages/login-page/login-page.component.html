@@ -1,13 +1,29 @@
-
 <!-- <p-image src="./assets/QLM.webp" [preview]="true" alt="Image" width="250" alt="App Icon">
     <ng-template pTemplate="indicator">
     </ng-template>
 </p-image> -->
-<p-selectButton [options]="choices" [(ngModel)]="choice" optionLabel="label" optionValue="value" (onChange)="changeForm($event.value)" ></p-selectButton>
+<div style="height: 100vh; ">
 
-@if(choice===0){
-<signup-form/>
-}
-@else if (choice===1) {
-    <login-form/>
-}
+
+    <div style="display: flex; justify-content: center; padding: 10px;">
+        <p-selectButton [options]="choices" [(ngModel)]="choice" optionLabel="label" optionValue="value"
+            (onChange)="changeForm($event.value)"></p-selectButton>
+    </div>
+
+<div>
+    
+
+    @if(choice===0){
+    <div style=" display: flex; justify-content: center; align-items: center; height: 50vh;">
+        <signup-form />
+    </div>
+
+    }
+    
+    @else if (choice===1) {
+    <div style=" display: flex; justify-content: center; align-items: center; height: 50vh;">
+        <login-form />
+    </div>
+
+    }
+</div>

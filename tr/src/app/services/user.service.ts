@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, catchError, of, switchMap, tap, throwError
   providedIn: 'root'
 })
 export class UserService {
-  private user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+   user: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   private userURL: string = 'http://localhost:443/user/';
 
   constructor(private http: HttpClient) { }

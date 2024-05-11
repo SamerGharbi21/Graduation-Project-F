@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
 import { Menu, MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../services/authentication.service';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @Component({
   standalone: true,
-  imports: [ AvatarModule, NamePipe, ToolbarModule, ButtonModule, CommonModule, MenuModule ],
+  imports: [ AvatarModule, NamePipe, ToolbarModule, ButtonModule, CommonModule, MenuModule, TooltipModule ],
   selector: 'toolbar',
   templateUrl: './toolbar.component.html',
   styles: `

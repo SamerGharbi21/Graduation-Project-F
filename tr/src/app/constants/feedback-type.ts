@@ -1,7 +1,7 @@
 
 
 export enum FeedbackType{
-Technical,
-Financial,
-Suggestion  
+Technical = 'TECHNICAL',
+Financial = 'FINANCIAL',
+Suggestion = 'SUGGESTION'  
 }

@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private authenticationURL: string = 'http://localhost:443/api/v1/auth/'; 
-  constructor(private http: HttpClient, private toastService: ToastService, private router: Router) { }
+  constructor(private http: HttpClient, private toastService: ToastService, private router: Router) { 
+  }
 
   login(credentials: { principle: string, password: string }): Observable<{accessToken: string, refreshToken: string}> {
     return this.http.post<{accessToken: string, refreshToken: string}>(`${this.authenticationURL}login`, credentials);
@@ -22,7 +23,7 @@ export class AuthService {
     username: string;
     firstName: string;
     lastName: string;
-    // pfp?: File;
+    // pfp: File | null;
   }): Observable<{accessToken: string, refreshToken: string}> {
     return this.http.post<{accessToken: string, refreshToken: string}>(`${this.authenticationURL}signup`, credentials);
   }

@@ -11,7 +11,7 @@ feedbacks: BehaviorSubject<Feedback[] | null> = new BehaviorSubject<Feedback[] |
 private feedbackURL: string = 'http://localhost:443/feedback/';
 constructor(private http: HttpClient){}
 
-getFeedbacks(): Observable<Feedback[] | null> {
+getFeedbacks(): Observable<Feedback[]> {
     return this.feedbacks.pipe(
         switchMap((feedbacks) => {
           if (feedbacks) {        

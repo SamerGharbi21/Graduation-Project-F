@@ -106,6 +106,8 @@ import { MessageService } from 'primeng/api';
 
 import { ToastService } from './services/toast-service.component';
 import { AuthenticationInterceptor } from './interceptors/authentication-interceptor.service';
+import { TopToolbar } from './components/toolbar/toolbar.component';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @NgModule({
   declarations: [
@@ -116,7 +118,13 @@ import { AuthenticationInterceptor } from './interceptors/authentication-interce
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    TopToolbar,
+    SpeedDialModule,
+    DialogModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    FloatLabelModule
   ],
   providers: [
     provideClientHydration(),

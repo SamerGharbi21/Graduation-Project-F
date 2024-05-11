@@ -15,7 +15,7 @@ infereAi(inferenceRequest: {query: string, whenCreated: Date}): Observable<{id: 
 return this.http.post<{id: number,response: string}>(`${this.inferenceURL}infere`,inferenceRequest);
 }
 
-deleteInference(id: number,): Observable<any> {
+deleteInference(id: number): Observable<any> {
   return this.http.delete<any>(`${this.inferenceURL}remove/${id}`, { observe: 'response' });
 }
 
@@ -47,4 +47,6 @@ this.inferences.next(updatedInferences);
 removeFromInference(id: number): void {
   this.updateInferences(this.inferences.value!.filter(inference => inference.id !== id));
 }
+
+
 }

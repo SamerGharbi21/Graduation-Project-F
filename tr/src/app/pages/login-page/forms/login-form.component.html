@@ -1,23 +1,32 @@
 <form (ngSubmit)="submit()" [formGroup]="loginForm">
 
-    <p-inputGroup>
+    <p-inputGroup [style]="{'margin-bottom':'12px'}">
         <p-inputGroupAddon>
             <i class="pi pi-user"></i>
         </p-inputGroupAddon>
         <p-floatLabel>
-        <input pInputText id="username" formControlName="principle" />
-        <label for="username">Username</label>
-</p-floatLabel>
-    </p-inputGroup>
-    <p-inputGroup>
-        <p-inputGroupAddon >
-            <i class="pi pi-key"></i> 
-        </p-inputGroupAddon>
-        <p-floatLabel>
-        <p-password formControlName="password" [feedback]="false" [style]="{'width': 'fit-content'}" [maxLength]="50" id="password"></p-password>
-        <label for="password">Password</label>
+            <input pInputText id="principal" formControlName="principle" />
+            <label for="principal">Username or Email</label>
         </p-floatLabel>
     </p-inputGroup>
-    <forgot-password-dialog [email]="loginForm.get('principle')?.value" ></forgot-password-dialog>
-    <p-button type="submit" icon="pi pi-sign-in"></p-button>
+    <p-inputGroup>
+        <p-inputGroupAddon>
+            <i class="pi pi-key"></i>
+        </p-inputGroupAddon>
+        <p-floatLabel>
+            <p-password formControlName="password" [feedback]="false" [style]="{'width': 'fit-content'}"
+                [maxLength]="50" id="password"></p-password>
+            <label for="password">Password</label>
+        </p-floatLabel>
+    </p-inputGroup>
+
+    <div style="margin-top:3px;">
+        <forgot-password-dialog [email]="loginForm.get('principle')?.value"
+            [ngStyle]="{'margin-bottom':'10px'} "></forgot-password-dialog>
+    </div>
+    <div style="margin-top:3px; ">
+        <p-button type="submit" icon="pi pi-sign-in" [ngStyle]="{'margin-top':'10px'}"></p-button>
+    </div>
+
+
 </form>

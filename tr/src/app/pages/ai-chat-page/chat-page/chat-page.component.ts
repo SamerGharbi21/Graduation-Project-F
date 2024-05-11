@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { ButtonModule } from 'primeng/button';
 import { MessageTemplate } from '../message-template/message-template/message-template.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Inference } from '../../../models/inference.model';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -20,13 +20,8 @@ import { HistorySidebar } from '../../../components/history-sidebar/history-side
 @Component({
   selector: 'chat-page',
   standalone: true,
-  imports: [InputGroupModule, ButtonModule, FloatLabelModule, FormsModule, MessageTemplate, InputTextModule, AiMessageTemplate, TooltipModule, HistorySidebar ],
-  templateUrl: './chat-page.component.html',
-  styles: `
-  input.ng-invalid {
-    border-color: ;
-}
-  `,
+  imports: [InputGroupModule, ButtonModule, FloatLabelModule, FormsModule, MessageTemplate, InputTextModule, AiMessageTemplate, TooltipModule, HistorySidebar ,CommonModule],
+  templateUrl: './chat-page.component.html'
   })
 export class ChatPage implements OnDestroy, OnInit{
 date = new DatePipe('en-US').transform(new Date(),'hh-mm')!;
