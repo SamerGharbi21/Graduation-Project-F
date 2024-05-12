@@ -69,6 +69,7 @@ constructor(private inferenceService: InferenceService, private userService: Use
               next: _ => {
                 this.inferenceService.removeFromInference(this.id);
                 this.deleteClicked.emit();
+                this.toastService.showSuccess({summary: 'Success', detail: 'Deleted!'})
               },
 error: (err) => {
   this.toastService.showError({summary: 'Error', detail: err});

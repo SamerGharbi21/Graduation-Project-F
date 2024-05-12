@@ -50,16 +50,21 @@ constructor(private inferenceService: InferenceService, private userService: Use
 submit(): void {
   const whenCreated = new Date();
   this.infrence = new Inference(this.text!,whenCreated);  
+  console.log(this.text);
+  
 this.inferenceService.infereAi({query: this.text!, whenCreated: whenCreated}).subscribe({
   next: (value) => {
+    
     this.infrence!.id = value.id;
-    this.infrence!.response = value.response; 
+    this.infrence!.response = value.response;
     this.inferenceService.updateInferences([...this.inferenceService.inferences.value!,this.infrence!]);
     this.text = '';
     this.aiForm.reset();
   },
   error: (err) => {
-this.toastService.showError({summary: 'Error', detail: err});    
+this.toastService.showError({summary: 'Error', detail: err}); 
+this.text = '';
+this.aiForm.reset()
   },
 });
 }

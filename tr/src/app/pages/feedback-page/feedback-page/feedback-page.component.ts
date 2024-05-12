@@ -62,6 +62,7 @@ sendFeedback(): void {
       this.feedbackService.feedbacks.next([...this.feedbackService.feedbacks.value!,feedback]);
       this.dialogVisible = false;
       this.toastService.showSuccess({summary: 'Success', detail: 'Feedback received'});
+      this.dialogForm.reset()
     },
     error: err => {
       this.toastService.showError({summary: 'Error', detail: err});

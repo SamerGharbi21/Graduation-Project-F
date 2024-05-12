@@ -8,20 +8,20 @@
     <form [formGroup]="customerSupportForm" (ngSubmit)="submit()">
     <span class="p-text-secondary block mb-5">Contact us</span>
     <div class="flex align-items-center gap-3 mb-3">
-        <p-floatLabel>
+        <p-floatLabel style="margin-bottom: 2px;">
         <input formControlName="email" pInputText id="email" class="flex-auto" autocomplete="off" />
         <label for="email" class="font-semibold w-6rem">Email</label>
     </p-floatLabel>
     </div>
     <div class="flex align-items-center gap-3 mb-5">
-        <p-floatLabel>
-        <input formControlName="issue" pInputText id="issue" class="flex-auto" autocomplete="off" style="margin-top: 10px;" />
+        <p-floatLabel style="margin-top: 10px;">
+        <input formControlName="issue" pInputText id="issue" class="flex-auto" autocomplete="off" />
         <label for="issue" class="font-semibold w-6rem">Issue</label>
     </p-floatLabel>
     </div>
     <div class="flex justify-content-center gap-2">
         <p-button label="Cancel" severity="secondary" (click)="supportDialogVisible = false; reset()" />
-        <p-button label="Save" (click)="supportDialogVisible = false" type="submit" />
+        <p-button label="Submit" type="submit" />
     </div>
 </form>
 </p-dialog>

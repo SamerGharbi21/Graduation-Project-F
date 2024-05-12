@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { Inference } from '../models/inference.model';
@@ -12,7 +12,8 @@ constructor(private http: HttpClient) { }
 inferences: BehaviorSubject<Inference[] | null> = new BehaviorSubject<Inference[] | null>(null);
 
 infereAi(inferenceRequest: {query: string, whenCreated: Date}): Observable<{id: number, response: string}> {  
-return this.http.post<{id: number,response: string}>(`${this.inferenceURL}infere`,inferenceRequest);
+  const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+return this.http.post<{id: number,response: string}>(`${this.inferenceURL}infere`,inferenceRequest,{headers: headers});
 }
 
 deleteInference(id: number): Observable<any> {
